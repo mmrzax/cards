@@ -30,10 +30,10 @@ func TestSaveToFileAndNewDeckFromFile(t *testing.T) {
 	deck := NewDeck()
 
 	// Save deck to "_decktesting"
-	deck.saveToFile("_decktesting")
+	deck.SaveToFile("_decktesting")
 
 	// Load deck from "_decktesting"
-	loadedDeck := newDeckFromFile("_decktesting")
+	loadedDeck := NewDeckFromFile("_decktesting")
 
 	// Assert deck Length
 	if len(loadedDeck) != 16 {

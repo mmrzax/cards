@@ -25,25 +25,25 @@ func NewDeck() Deck {
 	return cards
 }
 
-func (d Deck) print() {
+func (d Deck) Print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
 }
 
-func deal(d Deck, handSize int) (Deck, Deck) {
+func Deal(d Deck, handSize int) (Deck, Deck) {
 	return d[:handSize], d[handSize:]
 }
 
-func (d Deck) toString() string {
+func (d Deck) ToString() string {
 	return strings.Join(d, ",")
 }
 
-func (d Deck) saveToFile(filename string) error {
-	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+func (d Deck) SaveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.ToString()), 0666)
 }
 
-func newDeckFromFile(filename string) Deck {
+func NewDeckFromFile(filename string) Deck {
 	bs, err := ioutil.ReadFile(filename)
 	if err != nil {
 		// Option #1: Log the error and return a call to newDeck()
@@ -55,7 +55,7 @@ func newDeckFromFile(filename string) Deck {
 	return ss
 }
 
-func (d Deck) shuffle() {
+func (d Deck) Shuffle() {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 	for i := range d {
