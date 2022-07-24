@@ -6,7 +6,7 @@ import (
 )
 
 func TestNewDeck(t *testing.T) {
-	d := newDeck()
+	d := NewDeck()
 
 	if len(d) != 16 {
 		t.Errorf("Expected deck length of 16, but got %v", len(d))
@@ -27,7 +27,7 @@ func TestSaveToFileAndNewDeckFromFile(t *testing.T) {
 	os.Remove("_decktesting")
 
 	// Create a new deck
-	deck := newDeck()
+	deck := NewDeck()
 
 	// Save deck to "_decktesting"
 	deck.saveToFile("_decktesting")

@@ -9,12 +9,12 @@ import (
 	"time"
 )
 
-// Create a new type of deck
+// Deck Create a new type of Deck
 // Which is a slice of strings
-type deck []string // deck is like kind of slice or a subclass or extend in OO languages
+type Deck []string // Deck is like kind of slice or a subclass or extend in OO languages
 
-func newDeck() deck {
-	cards := deck{}
+func NewDeck() Deck {
+	cards := Deck{}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
 	for _, suit := range cardSuits {
@@ -25,25 +25,25 @@ func newDeck() deck {
 	return cards
 }
 
-func (d deck) print() {
+func (d Deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
 }
 
-func deal(d deck, handSize int) (deck, deck) {
+func deal(d Deck, handSize int) (Deck, Deck) {
 	return d[:handSize], d[handSize:]
 }
 
-func (d deck) toString() string {
+func (d Deck) toString() string {
 	return strings.Join(d, ",")
 }
 
-func (d deck) saveToFile(filename string) error {
+func (d Deck) saveToFile(filename string) error {
 	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
 
-func newDeckFromFile(filename string) deck {
+func newDeckFromFile(filename string) Deck {
 	bs, err := ioutil.ReadFile(filename)
 	if err != nil {
 		// Option #1: Log the error and return a call to newDeck()
@@ -55,7 +55,7 @@ func newDeckFromFile(filename string) deck {
 	return ss
 }
 
-func (d deck) shuffle() {
+func (d Deck) shuffle() {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 	for i := range d {
