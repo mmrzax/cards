@@ -2,7 +2,6 @@ package cards
 
 import (
 	"fmt"
-	"io/ioutil"
 	"math/rand"
 	"os"
 	"strings"
@@ -40,11 +39,11 @@ func (d Deck) ToString() string {
 }
 
 func (d Deck) SaveToFile(filename string) error {
-	return ioutil.WriteFile(filename, []byte(d.ToString()), 0666)
+	return os.WriteFile(filename, []byte(d.ToString()), 0666)
 }
 
 func NewDeckFromFile(filename string) Deck {
-	bs, err := ioutil.ReadFile(filename)
+	bs, err := os.ReadFile(filename)
 	if err != nil {
 		// Option #1: Log the error and return a call to newDeck()
 		// Option #2: Log the error and entirely quit the program
